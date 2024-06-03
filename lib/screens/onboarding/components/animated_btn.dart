@@ -14,10 +14,7 @@ class AnimatedBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // it shows the animation
-        _btnAnimationController.isActive = true;
-      },
+      onTap: press,
       child: SizedBox(
           height: 64,
           width: 260,

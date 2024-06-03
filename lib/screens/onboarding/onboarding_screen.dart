@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_2/screens/onboarding/components/custom_sign_in_dialog.dart';
 import 'package:rive/rive.dart';
 
 import 'components/animated_btn.dart';
@@ -17,9 +18,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   void initState() {
-    _btnAnimationController =
-        OneShotAnimation('active', mix: 1, autoplay: false);
     super.initState();
+
+    _btnAnimationController = OneShotAnimation('active', autoplay: false);
   }
 
   @override
@@ -63,12 +64,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
               const Spacer(
-                flex: 4,
+                flex: 2,
               ),
               AnimatedBtn(
                 btnAnimationController: _btnAnimationController,
                 press: () {
                   _btnAnimationController.isActive = true;
+
+                  // wait animation to finish then show dialog
+                  Future.delayed(Duration(milliseconds: 800), () {
+                    customSignInMethod(context);
+                  });
                 },
               ),
               Padding(
